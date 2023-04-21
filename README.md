@@ -30,6 +30,7 @@ WIP:
 - Enemy stats
 - Player health bar
 - Target health bar
+- In-game combat log, instead of prints
 - Ground AoE placement cursor
 - More talents
 - More abilities
