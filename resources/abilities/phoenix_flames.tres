@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=6 format=3 uid="uid://bpkaewggg0tdc"]
+
+[ext_resource type="Texture2D" uid="uid://dafbqtoac72yh" path="res://assets/ui/icons/phoenix_flame_icon.png" id="1_cm2xc"]
+[ext_resource type="PackedScene" uid="uid://cfc3av0slkygu" path="res://scenes/abilities/phoenix_flames/phoenix_flames.tscn" id="1_yv0q6"]
+[ext_resource type="Script" path="res://resources/types/element_type_resource.gd" id="2_fygl5"]
+[ext_resource type="Script" path="res://resources/abilities/ability_resource.gd" id="4_ngqdr"]
+
+[sub_resource type="Resource" id="Resource_ufno5"]
+script = ExtResource("2_fygl5")
+type = {
+"Arcane": false,
+"Fire": true,
+"Frost": false
+}
+
+[resource]
+script = ExtResource("4_ngqdr")
+id = "phoenix_flames"
+ability_scene = ExtResource("1_yv0q6")
+icon = ExtResource("1_cm2xc")
+name = "Phoenix Flames"
+description = "Send forth a phoenix of living flames towards your target enemy, dealing {dam} {type} damage and 75 % of that damage to nearby enemies.
+Always crits. Max {charges} charges."
+cast_type = "Instant"
+cast_time = 0.0
+elements = SubResource("Resource_ufno5")
+damage = 15.0
+splash = true
+splash_damage_multiplier = 0.75
+aoe = false
+additional_crit_chance = 1.0
+crit_damage_multiplier = 1.0
+cooldown = 25.0
+charges = 3
+castable_while_casting = false
+cast_on_mouse = false
+cast_while_moving = false

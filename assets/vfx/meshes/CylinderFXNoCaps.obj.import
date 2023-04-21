@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://caslmv8ooaxvg"
+path="res://.godot/imported/CylinderFXNoCaps.obj-45ca51180685b6b2800961eeb2e34e54.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CylinderFXNoCaps.obj-45ca51180685b6b2800961eeb2e34e54.mesh"]
+
+source_file="res://assets/vfx/meshes/CylinderFXNoCaps.obj"
+dest_files=["res://.godot/imported/CylinderFXNoCaps.obj-45ca51180685b6b2800961eeb2e34e54.mesh", "res://.godot/imported/CylinderFXNoCaps.obj-45ca51180685b6b2800961eeb2e34e54.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PassiveResource" load_steps=3 format=3 uid="uid://x1yqm704bx4t"]
+
+[ext_resource type="Script" path="res://resources/passives/passive_resource.gd" id="1_7btx1"]
+[ext_resource type="Texture2D" uid="uid://dblgrvvrattpf" path="res://assets/ui/icons/fireball_icon.png" id="1_f62my"]
+
+[resource]
+script = ExtResource("1_7btx1")
+id = "fiery_resolve"
+icon = ExtResource("1_f62my")
+name = "Fiery Resolve"
+description = "Every time your Fireball fails to critically hit, your next Fireball gains {amount} crit chance, stacking. Removed on Fireball critical hit."
+amount = 0.05

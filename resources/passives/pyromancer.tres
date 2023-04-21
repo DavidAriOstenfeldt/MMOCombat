@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PassiveResource" load_steps=3 format=3 uid="uid://c47r2l01fkftc"]
+
+[ext_resource type="Texture2D" uid="uid://c7gh8eng5hsw8" path="res://assets/ui/icons/pyroblast_icon.png" id="1_3ptmt"]
+[ext_resource type="Script" path="res://resources/passives/passive_resource.gd" id="1_7btx1"]
+
+[resource]
+script = ExtResource("1_7btx1")
+id = "pyromancer"
+icon = ExtResource("1_3ptmt")
+name = "Pyromancer"
+description = "Your critical hits with direct fire abilities grants Flame Spark.  If your next direct fire ability crits while having Spark, you gain Flame Surge, making your next Pyroblast or Flamestrike instant cast. "
+amount = 0.0

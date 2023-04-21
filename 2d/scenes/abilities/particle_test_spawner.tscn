@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://2d/scenes/abilities/particle_test_spawner.gd" id="1_q25dt"]
+
+[node name="ParticleTestSpawner" type="Node2D"]
+script = ExtResource("1_q25dt")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true

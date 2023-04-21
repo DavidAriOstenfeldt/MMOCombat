@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/hud_bottom/abilities/ability_button.gd" id="2_lrfjd"]
+[ext_resource type="Texture2D" uid="uid://d02e4ve532mdt" path="res://assets/white_square.png" id="3_o3fl3"]
+
+[node name="AbilityButton" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1216.0
+offset_bottom = -656.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+action_mode = 0
+shortcut_in_tooltip = false
+text = "0.0"
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_lrfjd")
+
+[node name="HotkeyLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -10.0
+offset_bottom = 26.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "1"
+horizontal_alignment = 1
+
+[node name="ChargesLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "3
+"
+horizontal_alignment = 1
+
+[node name="Sweep" type="TextureProgressBar" parent="."]
+modulate = Color(0, 0, 0, 0.270588)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+max_value = 1.0
+step = 0.01
+fill_mode = 5
+nine_patch_stretch = true
+texture_under = ExtResource("3_o3fl3")
+texture_over = ExtResource("3_o3fl3")
+texture_progress = ExtResource("3_o3fl3")
+
+[node name="SweepTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ChargeTimer" type="Timer" parent="."]
+one_shot = true

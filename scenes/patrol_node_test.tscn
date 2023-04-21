@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjfcymi22nkin"]
+
+[sub_resource type="Curve3D" id="Curve3D_v5ufs"]
+
+[node name="PatrolNodeTest" type="Node3D"]
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_v5ufs")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]

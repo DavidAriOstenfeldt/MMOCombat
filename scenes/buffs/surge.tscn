@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/buffs/buff.gd" id="1_kguha"]
+[ext_resource type="Resource" uid="uid://dgjascbqnynxx" path="res://resources/buffs/surge.tres" id="2_jgbhf"]
+
+[node name="Surge" type="Node"]
+script = ExtResource("1_kguha")
+buff_resource = ExtResource("2_jgbhf")
+
+[node name="DurationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="TickTimer" type="Timer" parent="."]

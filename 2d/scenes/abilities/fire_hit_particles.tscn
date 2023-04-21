@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Texture2D" uid="uid://dgun4or0f6syk" path="res://assets/vfx/textures/circle_01.png" id="1_cgk8v"]
+[ext_resource type="Script" path="res://2d/scenes/abilities/fire_hit_particles.gd" id="1_rx7ym"]
+[ext_resource type="Texture2D" uid="uid://bw48orek31huk" path="res://assets/vfx/textures/flare_01.png" id="3_b6qoh"]
+
+[sub_resource type="Gradient" id="Gradient_cypjl"]
+offsets = PackedFloat32Array(0, 0.22973, 0.626126, 1)
+colors = PackedColorArray(2, 2, 2, 1, 1.47, 0.84, 0.3, 1, 1, 0.254902, 0, 1, 1, 0.254902, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4e3i7"]
+gradient = SubResource("Gradient_cypjl")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_74kc6"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jvw4l"]
+curve = SubResource("Curve_74kc6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pmmi0"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.3
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_jvw4l")
+color_ramp = SubResource("GradientTexture1D_4e3i7")
+
+[sub_resource type="Gradient" id="Gradient_83piu"]
+offsets = PackedFloat32Array(0, 0.256757, 1)
+colors = PackedColorArray(1.5, 1.29, 0.08, 1, 0.996078, 0.427451, 0.0509804, 1, 0.996078, 0.427451, 0.0509804, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f133e"]
+gradient = SubResource("Gradient_83piu")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_63j1j"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 250.0
+initial_velocity_max = 300.0
+angular_velocity_min = 180.0
+angular_velocity_max = 360.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 500.0
+damping_max = 500.0
+scale_min = 0.05
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_f133e")
+
+[node name="FireHitParticles" type="Node2D"]
+script = ExtResource("1_rx7ym")
+
+[node name="Ring" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_pmmi0")
+texture = ExtResource("1_cgk8v")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 60
+
+[node name="Sparks" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_63j1j")
+texture = ExtResource("3_b6qoh")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+randomness = 0.5
+fixed_fps = 60
+
+[node name="Timer" type="Timer" parent="."]

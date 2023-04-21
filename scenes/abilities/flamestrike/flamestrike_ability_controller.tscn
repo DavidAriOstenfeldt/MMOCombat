@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://mfvlqpfbqp0g"]
+
+[ext_resource type="Script" path="res://scenes/abilities/ability_controller.gd" id="1_t8mq8"]
+[ext_resource type="Resource" uid="uid://hcwdguin27jb" path="res://resources/abilities/flamestrike.tres" id="2_p60st"]
+
+[node name="FlamestrikeAbilityController" type="Node"]
+script = ExtResource("1_t8mq8")
+ability = ExtResource("2_p60st")
+
+[node name="AbilityCooldownTimer" type="Timer" parent="."]
+one_shot = true

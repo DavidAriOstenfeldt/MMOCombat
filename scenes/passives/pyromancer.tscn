@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgvgqrgia4gni"]
+
+[ext_resource type="Script" path="res://scenes/passives/pyromancer.gd" id="1_ne2sv"]
+[ext_resource type="Resource" uid="uid://c47r2l01fkftc" path="res://resources/passives/pyromancer.tres" id="2_7om3x"]
+[ext_resource type="PackedScene" path="res://scenes/buffs/spark.tscn" id="3_wg18h"]
+[ext_resource type="PackedScene" path="res://scenes/buffs/surge.tscn" id="4_7r1yv"]
+[ext_resource type="PackedScene" path="res://scenes/buffs/surge_flamestrike.tscn" id="5_gxmx0"]
+
+[node name="Pyromancer" type="Node"]
+script = ExtResource("1_ne2sv")
+passive_resource = ExtResource("2_7om3x")
+spark_scene = ExtResource("3_wg18h")
+surge_scene = ExtResource("4_7r1yv")
+surge_flamestrike_scene = ExtResource("5_gxmx0")
+
+[node name="BufferTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

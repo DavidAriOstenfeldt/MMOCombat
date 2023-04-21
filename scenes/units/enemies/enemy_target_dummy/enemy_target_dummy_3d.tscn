@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scenes/units/enemies/enemy_target_dummy/enemy_target_dummy_3d.gd" id="1_3bkxb"]
+[ext_resource type="Shader" path="res://shaders/outline_3d.gdshader" id="2_7fti2"]
+[ext_resource type="PackedScene" uid="uid://8gvv7t5a4akw" path="res://scenes/ui/health_bar/health_bar.tscn" id="3_q6676"]
+
+[sub_resource type="Animation" id="Animation_3twgy"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_a6syt"]
+resource_name = "hurt"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_xubno"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2no7w"]
+_data = {
+"RESET": SubResource("Animation_3twgy"),
+"hurt": SubResource("Animation_a6syt"),
+"idle": SubResource("Animation_xubno")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_wqxus"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x4ols"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_7fti2")
+shader_parameter/enabled = false
+shader_parameter/outline_color = Color(1, 0.584314, 0.0196078, 1)
+shader_parameter/outline_width = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urc81"]
+albedo_color = Color(0.894118, 0.65098, 0.447059, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2bojd"]
+material = SubResource("StandardMaterial3D_urc81")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u6ocu"]
+radius = 0.75
+height = 2.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d7eeo"]
+
+[node name="EnemyTargetDummy" type="CharacterBody3D" groups=["enemy"]]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_3bkxb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_2no7w")
+}
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(0.820965, 0, 0, 0, 0.0973582, 0, 0, 0, 0.350765, 0.0131644, 1.75403, 0.315354)
+mesh = SubResource("BoxMesh_wqxus")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_overlay = SubResource("ShaderMaterial_x4ols")
+mesh = SubResource("CapsuleMesh_2bojd")
+
+[node name="HitMarker" type="Node3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.941852, 0)
+
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_u6ocu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_d7eeo")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_q6676")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.50229, 0)
+tint = Color(0.635294, 0.14902, 0.2, 1)
+
+[node name="HealTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="input_event" from="Hurtbox" to="." method="on_input_event"]
+[connection signal="mouse_entered" from="Hurtbox" to="." method="on_mouse_entered"]
+[connection signal="mouse_exited" from="Hurtbox" to="." method="on_mouse_exited"]

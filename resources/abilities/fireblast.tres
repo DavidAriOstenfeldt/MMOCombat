@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=6 format=3 uid="uid://cl25im8rsm8w6"]
+
+[ext_resource type="PackedScene" uid="uid://bnxs3oyvuig3" path="res://scenes/abilities/fireblast/fire_blast.tscn" id="1_c7jo6"]
+[ext_resource type="Texture2D" uid="uid://5t8gnv3mlndk" path="res://assets/ui/icons/fireblast_icon.png" id="1_tu61l"]
+[ext_resource type="Script" path="res://resources/types/element_type_resource.gd" id="2_k0dyg"]
+[ext_resource type="Script" path="res://resources/abilities/ability_resource.gd" id="4_yg5d5"]
+
+[sub_resource type="Resource" id="Resource_w6010"]
+script = ExtResource("2_k0dyg")
+type = {
+"Arcane": false,
+"Fire": true,
+"Frost": false
+}
+
+[resource]
+script = ExtResource("4_yg5d5")
+id = "fire_blast"
+ability_scene = ExtResource("1_c7jo6")
+icon = ExtResource("1_tu61l")
+name = "Fire Blast"
+description = "Blast your target enemy with fire, dealing {dam} {type} damage.
+Always crits. Max {charges} charges. Castable while casting."
+cast_type = "Instant"
+cast_time = 0.0
+elements = SubResource("Resource_w6010")
+damage = 10.0
+splash = false
+splash_damage_multiplier = 1.0
+aoe = false
+additional_crit_chance = 1.0
+crit_damage_multiplier = 1.0
+cooldown = 2.0
+charges = 2
+castable_while_casting = true
+cast_on_mouse = false
+cast_while_moving = false

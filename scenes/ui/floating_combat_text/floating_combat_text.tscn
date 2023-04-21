@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/floating_combat_text/floating_combat_text.gd" id="1_mid2k"]
+
+[node name="FloatingCombatText" type="Label3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+billboard = 1
+no_depth_test = true
+fixed_size = true
+render_priority = 10
+outline_render_priority = 9
+modulate = Color(0.996078, 0.682353, 0.203922, 1)
+text = "30!"
+script = ExtResource("1_mid2k")

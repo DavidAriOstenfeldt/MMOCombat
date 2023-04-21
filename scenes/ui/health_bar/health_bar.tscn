@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://8gvv7t5a4akw"]
+
+[ext_resource type="Texture2D" uid="uid://bkqpv6ge87u4l" path="res://assets/ui/progress_bar_outline.png" id="1_feqgc"]
+[ext_resource type="Script" path="res://scenes/ui/health_bar/health_bar.gd" id="1_m8ujy"]
+[ext_resource type="Texture2D" uid="uid://ciiyeffwjlwoq" path="res://assets/ui/progress_bar.png" id="2_kuxgv"]
+
+[node name="HealthBar" type="Sprite3D"]
+billboard = 1
+script = ExtResource("1_m8ujy")
+tint = Color(1, 1, 1, 1)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(200, 20)
+
+[node name="HealthChanged" type="TextureProgressBar" parent="SubViewport"]
+offset_right = 200.0
+offset_bottom = 20.0
+value = 80.0
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("2_kuxgv")
+texture_progress = ExtResource("2_kuxgv")
+tint_under = Color(0.0941176, 0.0784314, 0.145098, 1)
+
+[node name="HealthBar" type="TextureProgressBar" parent="SubViewport"]
+offset_right = 200.0
+offset_bottom = 20.0
+size_flags_vertical = 4
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_over = ExtResource("1_feqgc")
+texture_progress = ExtResource("2_kuxgv")
+tint_under = Color(0.0980392, 0.0980392, 0.0980392, 1)
+tint_over = Color(0.0980392, 0.0980392, 0.0980392, 1)
+tint_progress = Color(0.686275, 0, 0.184314, 1)
+
+[node name="Label3D" type="Label3D" parent="."]
+offset = Vector2(0, 60)
+billboard = 1
+modulate = Color(0.894118, 0.231373, 0.266667, 1)
+text = "Target Dummy"
+font_size = 64
+outline_size = 24

@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfj5q07xq1n3j"]
+
+[ext_resource type="Script" path="res://scenes/abilities/base_abilities/projectile_ability.gd" id="1_3uluw"]
+[ext_resource type="Shader" uid="uid://b3cu57mo2r4cs" path="res://shaders/burst.tres" id="2_oikkc"]
+[ext_resource type="PackedScene" uid="uid://di62taw5nstoe" path="res://scenes/vfx/fire.tscn" id="3_vkejj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_54g5i"]
+render_priority = 0
+shader = ExtResource("2_oikkc")
+shader_parameter/Outer_Color = Color(1, 0.309804, 0.0313726, 1)
+shader_parameter/Distortion_Speed = 3.0
+shader_parameter/Distortion_Tile = Vector3(5, 1, 0)
+shader_parameter/DistortionScale = 5.0
+shader_parameter/Distortion_Blend = 0.5
+shader_parameter/Height = 0.557
+shader_parameter/Inner_Height = 0.75
+shader_parameter/Inner_Color = Color(1.5, 0.72, 0.25, 1)
+shader_parameter/Dissolve = 0.0
+shader_parameter/Dissolve_Tile = Vector3(1, 1, 0)
+shader_parameter/Dissolve_Scale = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_28i4v"]
+material = SubResource("ShaderMaterial_54g5i")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vvwpc"]
+
+[node name="Fireball" type="Node3D" node_paths=PackedStringArray("hitbox", "visuals")]
+script = ExtResource("1_3uluw")
+ability_resource_path = "res://resources/abilities/fireball.tres"
+hitbox = NodePath("Hitbox")
+visuals = NodePath("Visuals")
+
+[node name="QueueFreeTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="Visuals" type="Node3D" parent="."]
+visible = false
+
+[node name="Fireball" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, -8.24506e-08, -1, 0, 1.88625, -4.37114e-08, 0, 0, 0.428975)
+mesh = SubResource("SphereMesh_28i4v")
+
+[node name="Fire" parent="Visuals" instance=ExtResource("3_vkejj")]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0.103231)
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_vvwpc")

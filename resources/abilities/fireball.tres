@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=6 format=3 uid="uid://c1eul8lt2nl73"]
+
+[ext_resource type="Texture2D" uid="uid://dblgrvvrattpf" path="res://assets/ui/icons/fireball_icon.png" id="1_8dyev"]
+[ext_resource type="PackedScene" uid="uid://bfj5q07xq1n3j" path="res://scenes/abilities/fireball/fireball.tscn" id="1_oqgir"]
+[ext_resource type="Script" path="res://resources/types/element_type_resource.gd" id="2_jyol4"]
+[ext_resource type="Script" path="res://resources/abilities/ability_resource.gd" id="4_yfoea"]
+
+[sub_resource type="Resource" id="Resource_ntbu6"]
+script = ExtResource("2_jyol4")
+type = {
+"Arcane": false,
+"Fire": true,
+"Frost": false
+}
+
+[resource]
+script = ExtResource("4_yfoea")
+id = "fireball"
+ability_scene = ExtResource("1_oqgir")
+icon = ExtResource("1_8dyev")
+name = "Fireball"
+description = "Casts a magical ball of fire at your target enemy, dealing {dam} {type} damage."
+cast_type = "Cast"
+cast_time = 2.0
+elements = SubResource("Resource_ntbu6")
+damage = 12.0
+splash = false
+splash_damage_multiplier = 1.0
+aoe = false
+additional_crit_chance = 0.0
+crit_damage_multiplier = 1.0
+cooldown = 0.0
+charges = 1
+castable_while_casting = false
+cast_on_mouse = false
+cast_while_moving = false

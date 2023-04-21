@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5sprxpbb0hrv"]
+
+[ext_resource type="Script" path="res://scenes/ui/talent_trees/talent_screen.gd" id="1_l4ce5"]
+[ext_resource type="PackedScene" uid="uid://gnfws3lsm5kg" path="res://scenes/ui/talent_trees/fire_talent_tree.tscn" id="2_40qrh"]
+[ext_resource type="PackedScene" path="res://scenes/ui/talent_trees/talent_tooltip.tscn" id="3_ieg2s"]
+
+[node name="TalentScreen" type="CanvasLayer"]
+script = ExtResource("1_l4ce5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="TalentTreeContainer" type="TabContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+
+[node name="Fire" parent="MarginContainer/TalentTreeContainer" instance=ExtResource("2_40qrh")]
+layout_mode = 2
+
+[node name="TalentTooltip" parent="." instance=ExtResource("3_ieg2s")]
+unique_name_in_owner = true
+offset_left = 502.0
+offset_top = 107.0
+offset_right = 752.0
+offset_bottom = 311.0

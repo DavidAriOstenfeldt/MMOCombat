@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BuffResource" load_steps=3 format=3 uid="uid://bukchovo70yxu"]
+
+[ext_resource type="Script" path="res://resources/buffs/buff_resource.gd" id="1_7o5ot"]
+[ext_resource type="Texture2D" uid="uid://5t8gnv3mlndk" path="res://assets/ui/icons/fireblast_icon.png" id="1_pkig1"]
+
+[resource]
+script = ExtResource("1_7o5ot")
+id = "flame_spark"
+icon = ExtResource("1_pkig1")
+name = "Flame Spark"
+description = "If your next fire ability is a critical hit, you gain Flame Surge, making your next Pyroblast instant cast."
+hidden = false
+duration = 10.0
+tick_interval = 0.0
+flat_amount = 0.0
+perc_amount = 0.0
+debuff = false
+stacks = false
+max_stacks = 0
+current_stacks = 0

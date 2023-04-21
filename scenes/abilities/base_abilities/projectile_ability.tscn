@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bibm6jdh6rgyc"]
+
+[ext_resource type="Script" path="res://scenes/abilities/base_abilities/projectile_ability.gd" id="1_ij45x"]
+
+[node name="ProjectileAbility" type="Node3D"]
+script = ExtResource("1_ij45x")
+
+[node name="QueueFreeTimer" type="Timer" parent="."]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8vw7c6ks45ep"]
+
+[ext_resource type="Script" path="res://scenes/abilities/ability_controller.gd" id="1_458iy"]
+[ext_resource type="Resource" uid="uid://bft7wm1ahtpte" path="res://resources/abilities/pyroblast.tres" id="2_t2076"]
+
+[node name="PyroblastAbilityController" type="Node"]
+script = ExtResource("1_458iy")
+ability = ExtResource("2_t2076")
+
+[node name="AbilityCooldownTimer" type="Timer" parent="."]
+one_shot = true

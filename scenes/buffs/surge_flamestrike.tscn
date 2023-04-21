@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/buffs/buff.gd" id="1_sqqee"]
+[ext_resource type="Resource" uid="uid://seg6xognnqr2" path="res://resources/buffs/surge_flamestrike.tres" id="2_4syhu"]
+
+[node name="SurgeFlamestrike" type="Node"]
+script = ExtResource("1_sqqee")
+buff_resource = ExtResource("2_4syhu")
+
+[node name="DurationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="TickTimer" type="Timer" parent="."]

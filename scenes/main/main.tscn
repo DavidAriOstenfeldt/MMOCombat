@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8cfdpnwa36bk"]
+
+[ext_resource type="PackedScene" uid="uid://dh6j02loyqfqb" path="res://scenes/levels/combat_test_world.tscn" id="1_17b8p"]
+[ext_resource type="PackedScene" uid="uid://cayic7rpuh2od" path="res://scenes/ui/gui.tscn" id="3_kqcnl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mjydw"]
+sky_top_color = Color(0.254902, 0.482353, 0.576471, 1)
+sky_horizon_color = Color(0.839216, 0.454902, 0.321569, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_tr3qy"]
+sky_material = SubResource("ProceduralSkyMaterial_mjydw")
+
+[sub_resource type="Environment" id="Environment_wvjxt"]
+background_mode = 2
+sky = SubResource("Sky_tr3qy")
+ambient_light_energy = 10.74
+tonemap_mode = 3
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+fog_light_color = Color(0.694118, 0.694118, 0.694118, 1)
+fog_density = 0.0001
+volumetric_fog_density = 0.01
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.2
+
+[node name="Main" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wvjxt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+shadow_opacity = 0.5
+
+[node name="CombatTestWorld" parent="." instance=ExtResource("1_17b8p")]
+
+[node name="GUI" parent="." groups=["gui"] instance=ExtResource("3_kqcnl")]

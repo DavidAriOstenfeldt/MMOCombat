@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://n5k6uib8pmes"]
+
+[ext_resource type="Script" path="res://scenes/abilities/base_abilities/projectile_ability.gd" id="1_7r1af"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3xab"]
+albedo_color = Color(1, 0.219608, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.219608, 0, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_0pp1s"]
+material = SubResource("StandardMaterial3D_w3xab")
+radius = 0.75
+height = 1.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vvwpc"]
+
+[node name="Pyroblast" type="Node3D" node_paths=PackedStringArray("hitbox", "visuals")]
+script = ExtResource("1_7r1af")
+ability_resource_path = "res://resources/abilities/pyroblast.tres"
+hitbox = NodePath("Hitbox")
+visuals = NodePath("MeshInstance3D")
+
+[node name="QueueFreeTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_0pp1s")
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_vvwpc")

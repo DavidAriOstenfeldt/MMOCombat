@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnxs3oyvuig3"]
+
+[ext_resource type="Script" path="res://scenes/abilities/fireblast/fire_blast.gd" id="1_a3b75"]
+[ext_resource type="PackedScene" uid="uid://cjdjor8ndgffy" path="res://scenes/abilities/fireblast/fire_blast_particles.tscn" id="2_puat2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jit58"]
+
+[node name="FireBlast" type="Node3D"]
+script = ExtResource("1_a3b75")
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("BoxShape3D_jit58")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.1
+one_shot = true
+
+[node name="Visuals" type="Node3D" parent="."]
+visible = false
+
+[node name="Fire" parent="Visuals" instance=ExtResource("2_puat2")]

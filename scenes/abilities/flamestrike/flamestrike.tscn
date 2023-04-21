@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://yf321ak55yiq"]
+
+[ext_resource type="Script" path="res://scenes/abilities/flamestrike/flamestrike.gd" id="1_axjpt"]
+[ext_resource type="PackedScene" uid="uid://e77ftmllnl4w" path="res://scenes/abilities/flamestrike/flame_strike_particles.tscn" id="2_n5yrg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dludv"]
+radius = 2.0
+
+[node name="FlameStrike" type="Node3D"]
+script = ExtResource("1_axjpt")
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_dludv")
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Visuals" type="Node3D" parent="."]
+transform = Transform3D(0.907336, 0, 0, 0, 0.777056, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="FlameStrikeParticles" parent="Visuals" instance=ExtResource("2_n5yrg")]

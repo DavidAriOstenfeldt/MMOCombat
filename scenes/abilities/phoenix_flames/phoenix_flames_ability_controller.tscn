@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://4srs2ho5sa8u"]
+
+[ext_resource type="Script" path="res://scenes/abilities/ability_controller.gd" id="1_l06xj"]
+[ext_resource type="Resource" uid="uid://bpkaewggg0tdc" path="res://resources/abilities/phoenix_flames.tres" id="2_m6b08"]
+
+[node name="PhoenixFlamesAbilityController" type="Node"]
+script = ExtResource("1_l06xj")
+ability = ExtResource("2_m6b08")
+
+[node name="AbilityCooldownTimer" type="Timer" parent="."]
+one_shot = true

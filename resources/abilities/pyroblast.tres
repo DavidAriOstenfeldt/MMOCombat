@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=6 format=3 uid="uid://bft7wm1ahtpte"]
+
+[ext_resource type="Texture2D" uid="uid://c7gh8eng5hsw8" path="res://assets/ui/icons/pyroblast_icon.png" id="1_5yoq8"]
+[ext_resource type="PackedScene" uid="uid://n5k6uib8pmes" path="res://scenes/abilities/pyroblast/pyroblast.tscn" id="1_vvqql"]
+[ext_resource type="Script" path="res://resources/types/element_type_resource.gd" id="2_1lm00"]
+[ext_resource type="Script" path="res://resources/abilities/ability_resource.gd" id="4_y8t4s"]
+
+[sub_resource type="Resource" id="Resource_k3rd7"]
+script = ExtResource("2_1lm00")
+type = {
+"Arcane": false,
+"Fire": true,
+"Frost": false
+}
+
+[resource]
+script = ExtResource("4_y8t4s")
+id = "pyroblast"
+ability_scene = ExtResource("1_vvqql")
+icon = ExtResource("1_5yoq8")
+name = "Pyroblast"
+description = "Hurl a giant ball of pyroclasmic fire at your target enemy, dealing {dam} {type} damage."
+cast_type = "Cast"
+cast_time = 3.0
+elements = SubResource("Resource_k3rd7")
+damage = 20.0
+splash = false
+splash_damage_multiplier = 1.0
+aoe = false
+additional_crit_chance = 0.0
+crit_damage_multiplier = 1.0
+cooldown = 0.0
+charges = 1
+castable_while_casting = false
+cast_on_mouse = false
+cast_while_moving = false

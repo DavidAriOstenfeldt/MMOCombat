@@ -1,0 +1,213 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Texture2D" uid="uid://38hbchhcr5uy" path="res://assets/units/target_dummy/target_dummy_foot.png" id="1_36nnd"]
+[ext_resource type="Script" path="res://2d/scenes/units/enemy_target_dummy.gd" id="1_53dlj"]
+[ext_resource type="Texture2D" uid="uid://bhx15x7xpd2wh" path="res://assets/shadow_2x.png" id="1_ufmlq"]
+[ext_resource type="Texture2D" uid="uid://bjsqw8hr2ky34" path="res://assets/units/target_dummy/target_dummy_body.png" id="2_ox6mf"]
+
+[sub_resource type="Animation" id="Animation_3twgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a6syt"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Body:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.4),
+"transitions": PackedFloat32Array(1.51572, 1.51572, 1, 1),
+"update": 0,
+"values": [Vector2(1.25, 0.75), Vector2(1.25, 0.75), Vector2(0.75, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xubno"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2no7w"]
+_data = {
+"RESET": SubResource("Animation_3twgy"),
+"hurt": SubResource("Animation_a6syt"),
+"idle": SubResource("Animation_xubno")
+}
+
+[sub_resource type="Shader" id="Shader_id42m"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform bool on = true;
+uniform vec4 line_color : source_color = vec4(1);
+uniform float line_thickness : hint_range(0, 20) = 0.0;
+uniform bool add_margins = true;
+
+void vertex() {
+    if (add_margins) {
+        VERTEX += (UV * 2.0 - 1.0) * line_thickness;
+    }
+}
+
+void fragment() {
+	if (on) {
+    vec2 uv = UV;
+    
+    if (add_margins) {
+        vec2 texture_pixel_size = vec2(1.0) / (vec2(1.0) / TEXTURE_PIXEL_SIZE + vec2(line_thickness * 2.0));
+        
+        uv = (uv - texture_pixel_size * line_thickness) * TEXTURE_PIXEL_SIZE / texture_pixel_size;
+        
+        if (uv != clamp(uv, vec2(0.0), vec2(1.0))) {
+            COLOR.a = 0.0;
+        } else {
+            COLOR = texture(TEXTURE, uv);
+        }
+    } else {
+        COLOR = texture(TEXTURE, uv);
+    }
+    
+    vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+    
+    if (line_thickness < 0.1) {
+        vec4 color = texture(TEXTURE, uv);
+        COLOR = color;
+    } else {
+        float outline = texture(TEXTURE, uv + vec2(-size.x, 0)).a;
+        outline += texture(TEXTURE, uv + vec2(0, size.y)).a;
+        outline += texture(TEXTURE, uv + vec2(size.x, 0)).a;
+        outline += texture(TEXTURE, uv + vec2(0, -size.y)).a;
+        outline += texture(TEXTURE, uv + vec2(-size.x * 0.866, size.y * 0.5)).a;
+        outline += texture(TEXTURE, uv + vec2(-size.x * 0.5, size.y * 0.866)).a;
+        outline += texture(TEXTURE, uv + vec2(size.x * 0.866, size.y * 0.5)).a;
+        outline += texture(TEXTURE, uv + vec2(size.x * 0.5, size.y * 0.866)).a;
+        outline += texture(TEXTURE, uv + vec2(-size.x * 0.866, -size.y * 0.5)).a;
+        outline += texture(TEXTURE, uv + vec2(-size.x * 0.5, -size.y * 0.866)).a;
+        outline += texture(TEXTURE, uv + vec2(size.x * 0.866, -size.y * 0.5)).a;
+        outline += texture(TEXTURE, uv + vec2(size.x * 0.5, -size.y * 0.866)).a;
+        outline = min(outline, 1.0);
+        
+        vec4 color = texture(TEXTURE, uv);
+        COLOR = mix(color, line_color, outline - color.a);
+    }
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_enloq"]
+resource_local_to_scene = true
+shader = SubResource("Shader_id42m")
+shader_parameter/on = false
+shader_parameter/line_color = Color(0.955779, 0.853522, 0.479293, 1)
+shader_parameter/line_thickness = 2.0
+shader_parameter/add_margins = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tx2o3"]
+radius = 8.06226
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tuae"]
+size = Vector2(39, 52)
+
+[node name="EnemyTargetDummy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+motion_mode = 1
+script = ExtResource("1_53dlj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_2no7w")
+}
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="Visuals"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_ufmlq")
+offset = Vector2(-2, -38)
+
+[node name="Foot" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("1_36nnd")
+offset = Vector2(0, -32)
+
+[node name="Body" type="Sprite2D" parent="Visuals"]
+material = SubResource("ShaderMaterial_enloq")
+texture = ExtResource("2_ox6mf")
+offset = Vector2(0, -32)
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_tx2o3")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0.5, -32)
+shape = SubResource("RectangleShape2D_8tuae")
+
+[connection signal="mouse_entered" from="Hurtbox" to="." method="on_mouse_entered"]
+[connection signal="mouse_exited" from="Hurtbox" to="." method="on_mouse_exited"]

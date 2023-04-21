@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/buffs/buff.gd" id="1_xgcfw"]
+[ext_resource type="Resource" uid="uid://bukchovo70yxu" path="res://resources/buffs/spark.tres" id="2_74xe1"]
+
+[node name="Spark" type="Node"]
+script = ExtResource("1_xgcfw")
+buff_resource = ExtResource("2_74xe1")
+
+[node name="DurationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="TickTimer" type="Timer" parent="."]

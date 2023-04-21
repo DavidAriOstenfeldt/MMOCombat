@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/hud_bottom/abilities/ability_button.tscn" id="1_3kuc5"]
+[ext_resource type="Script" path="res://scenes/ui/hud_bottom/action_bar/action_bar.gd" id="1_ffeu0"]
+
+[node name="ActionBar" type="HBoxContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 2
+alignment = 1
+script = ExtResource("1_ffeu0")
+ability_button_scene = ExtResource("1_3kuc5")
+
+[node name="GlobalCooldownTimer" type="Timer" parent="."]
+one_shot = true

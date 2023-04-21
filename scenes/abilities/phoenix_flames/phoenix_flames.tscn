@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfc3av0slkygu"]
+
+[ext_resource type="Script" path="res://scenes/abilities/base_abilities/projectile_ability.gd" id="1_loya8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6h3dq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_58xt6"]
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v33m"]
+albedo_color = Color(1, 0.772549, 0.054902, 1)
+emission_enabled = true
+emission = Color(1, 0.329412, 0.054902, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_yrxmj"]
+material = SubResource("StandardMaterial3D_7v33m")
+
+[node name="PhoenixFlames" type="Node3D" node_paths=PackedStringArray("hitbox", "splash_hitbox", "visuals")]
+script = ExtResource("1_loya8")
+ability_resource_path = "res://resources/abilities/phoenix_flames.tres"
+hitbox = NodePath("Hitbox")
+splash_hitbox = NodePath("AoeHitbox")
+visuals = NodePath("Visuals")
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_6h3dq")
+
+[node name="AoeHitbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AoeHitbox"]
+shape = SubResource("SphereShape3D_58xt6")
+disabled = true
+
+[node name="QueueFreeTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals"]
+mesh = SubResource("SphereMesh_yrxmj")

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BuffResource" load_steps=6 format=3 uid="uid://dgjascbqnynxx"]
+
+[ext_resource type="Script" path="res://resources/modifiers/ability_stat_modifier_resource.gd" id="1_nv5bp"]
+[ext_resource type="Script" path="res://resources/buffs/buff_resource.gd" id="1_vt41a"]
+[ext_resource type="Texture2D" uid="uid://c7gh8eng5hsw8" path="res://assets/ui/icons/pyroblast_icon.png" id="2_gtl54"]
+[ext_resource type="Resource" uid="uid://bft7wm1ahtpte" path="res://resources/abilities/pyroblast.tres" id="2_tf67c"]
+
+[sub_resource type="Resource" id="Resource_a7rxc"]
+script = ExtResource("1_nv5bp")
+stat = {
+"Cast Time": true,
+"Cooldown": false,
+"Crit Chance": false,
+"Damage": false
+}
+
+[resource]
+script = ExtResource("1_vt41a")
+id = "flame_surge"
+icon = ExtResource("2_gtl54")
+name = "Flame Surge"
+description = "Your next Pyroblast or Flamestrike is instant!"
+hidden = false
+duration = 10.0
+tick_interval = 0.0
+modifies_ability = ExtResource("2_tf67c")
+ability_stat_modifiers = SubResource("Resource_a7rxc")
+flat_amount = 0.0
+perc_amount = 1.0
+debuff = false
+stacks = false
+max_stacks = 0
+current_stacks = 0

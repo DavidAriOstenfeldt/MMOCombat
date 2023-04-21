@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/hud_bottom/cast_bar/cast_bar.gd" id="1_lwlho"]
+
+[node name="CastBar" type="ProgressBar"]
+custom_minimum_size = Vector2(256, 16)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+max_value = 1.0
+show_percentage = false
+script = ExtResource("1_lwlho")
+
+[node name="CastBarTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CastBarLabel" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Spell Name 1.8"
+horizontal_alignment = 2
+vertical_alignment = 1

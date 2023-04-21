@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" uid="uid://dbmnewc7g6sih" path="res://assets/ui/icons/construction_icon.png" id="1_tk88g"]
+[ext_resource type="Script" path="res://scenes/ui/talent_trees/talent_tree_button.gd" id="2_55mw6"]
+
+[node name="TalentTreeButton" type="Button" groups=["talent_tree_button"]]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+button_mask = 3
+shortcut_in_tooltip = false
+icon = ExtResource("1_tk88g")
+icon_alignment = 1
+script = ExtResource("2_55mw6")
+
+[node name="RankLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 14
+text = "0/1"
+horizontal_alignment = 2
+vertical_alignment = 2

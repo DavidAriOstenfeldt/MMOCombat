@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TalentResource" load_steps=4 format=3 uid="uid://b2khc321r7vd6"]
+
+[ext_resource type="Texture2D" uid="uid://c7gh8eng5hsw8" path="res://assets/ui/icons/pyroblast_icon.png" id="1_7sgqq"]
+[ext_resource type="Script" path="res://resources/talents/talent_resource.gd" id="1_sfoej"]
+[ext_resource type="Resource" uid="uid://c47r2l01fkftc" path="res://resources/passives/pyromancer.tres" id="2_bt0pd"]
+
+[resource]
+script = ExtResource("1_sfoej")
+id = "pyromancer_talent"
+icon = ExtResource("1_7sgqq")
+name = "Pyromancer"
+description = "Grants the Pyromancer passive."
+max_rank = 1
+resource = ExtResource("2_bt0pd")
+passive = true
+ability = false
+use_resource_description = false

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://b1ece01jb7x4u" path="res://assets/BackgroundColor.png" id="1_vrelc"]
+[ext_resource type="PackedScene" path="res://2d/scenes/units/enemy_target_dummy.tscn" id="2_ypkft"]
+[ext_resource type="PackedScene" path="res://2d/scenes/units/player.tscn" id="3_7rqtq"]
+
+[sub_resource type="Environment" id="Environment_f3f4e"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+glow_hdr_threshold = 0.8
+
+[node name="TestWorld" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(641.5, 357.5)
+scale = Vector2(20.1094, 11.8594)
+texture = ExtResource("1_vrelc")
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="EnemyTargetDummy" parent="Entities" instance=ExtResource("2_ypkft")]
+position = Vector2(966, 351)
+
+[node name="EnemyTargetDummy2" parent="Entities" instance=ExtResource("2_ypkft")]
+position = Vector2(966, 427)
+
+[node name="EnemyTargetDummy3" parent="Entities" instance=ExtResource("2_ypkft")]
+position = Vector2(901, 380)
+
+[node name="EnemyTargetDummy4" parent="Entities" instance=ExtResource("2_ypkft")]
+position = Vector2(1029, 384)
+
+[node name="Player" parent="Entities" instance=ExtResource("3_7rqtq")]
+position = Vector2(294, 327)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f3f4e")

@@ -1,0 +1,183 @@
+[gd_scene load_steps=6 format=3 uid="uid://gnfws3lsm5kg"]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/talent_trees/talent_tree_button.tscn" id="1_4ls46"]
+[ext_resource type="Resource" uid="uid://10puwp1qr6qo" path="res://resources/talents/fiery_resolve_talent.tres" id="2_5v455"]
+[ext_resource type="Resource" uid="uid://b2khc321r7vd6" path="res://resources/talents/pyromancer_talent.tres" id="2_e44sm"]
+[ext_resource type="PackedScene" uid="uid://dgvgqrgia4gni" path="res://scenes/passives/pyromancer.tscn" id="3_20c2b"]
+[ext_resource type="PackedScene" path="res://scenes/passives/fiery_resolve.tscn" id="5_kn82i"]
+
+[node name="Fire" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 500)
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="TopPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TalentTreeNameLabel" type="Label" parent="MarginContainer/VBoxContainer/TopPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Fire"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TreePanel" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TreePanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="RowContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Row1" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="TalentTreeButton" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row1" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+talent_resource = ExtResource("2_e44sm")
+scene = ExtResource("3_20c2b")
+
+[node name="TalentTreeButton2" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row1" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+talent_resource = ExtResource("2_5v455")
+scene = ExtResource("5_kn82i")
+
+[node name="TalentTreeButton3" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row1" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Row2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 32
+
+[node name="TalentTreeButton" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row2" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TalentTreeButton2" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row2" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TalentTreeButton3" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row2" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TalentTreeButton4" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row2" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Row3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="TalentTreeButton" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row3" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TalentTreeButton2" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row3" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Row4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="TalentTreeButton" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row4" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Row5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="TalentTreeButton" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row5" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TalentTreeButton2" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row5" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TalentTreeButton3" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row5" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Row6" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="TalentTreeButton" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row6" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TalentTreeButton2" parent="MarginContainer/VBoxContainer/TreePanel/MarginContainer/ScrollContainer/RowContainer/Row6" instance=ExtResource("1_4ls46")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TalentPointMarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TreePanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_right = 16
+
+[node name="TalentPointLabel" type="Label" parent="MarginContainer/VBoxContainer/TreePanel/TalentPointMarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 10
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 12
+text = "1 talent point available"
+horizontal_alignment = 2
+vertical_alignment = 2

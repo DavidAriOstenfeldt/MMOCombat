@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://cayic7rpuh2od"]
+
+[ext_resource type="Script" path="res://scenes/ui/gui.gd" id="1_su3uw"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud_bottom/action_bar/action_bar.tscn" id="2_3dkrx"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud_bottom/buffs/buff.tscn" id="2_8imiq"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud_bottom/cast_bar/cast_bar.tscn" id="2_mma4i"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud_bottom/abilities/ability_tooltip.tscn" id="4_7khak"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud_bottom/buffs/buff_tooltip.tscn" id="6_r0yrh"]
+[ext_resource type="PackedScene" uid="uid://uk73x5ebr17s" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="7_wp42o"]
+[ext_resource type="PackedScene" uid="uid://es430morqwj" path="res://scenes/ui/settings_menu/settings_menu.tscn" id="8_whfkw"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_su3uw")
+buff_scene = ExtResource("2_8imiq")
+
+[node name="BottomContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BuffContainer" type="HBoxContainer" parent="BottomContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 1
+
+[node name="CastBarContainer" type="CenterContainer" parent="BottomContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CastBar" parent="BottomContainer/VBoxContainer/HBoxContainer/CastBarContainer" instance=ExtResource("2_mma4i")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="DebuffContainer" type="HBoxContainer" parent="BottomContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 1
+
+[node name="HSeparator" type="HSeparator" parent="BottomContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="ActionBar" parent="BottomContainer/VBoxContainer" instance=ExtResource("2_3dkrx")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AbilityTooltip" parent="." instance=ExtResource("4_7khak")]
+unique_name_in_owner = true
+visible = false
+
+[node name="BuffTooltip" parent="." instance=ExtResource("6_r0yrh")]
+unique_name_in_owner = true
+
+[node name="PauseMenu" parent="." node_paths=PackedStringArray("settings_menu") instance=ExtResource("7_wp42o")]
+visible = false
+settings_menu = NodePath("../SettingsMenu")
+
+[node name="SettingsMenu" parent="." node_paths=PackedStringArray("back_menu") instance=ExtResource("8_whfkw")]
+visible = false
+back_menu = NodePath("../PauseMenu")

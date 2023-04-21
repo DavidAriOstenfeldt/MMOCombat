@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/autoloads/combat_events.gd" id="1_7chdp"]
+
+[node name="CombatEvents" type="Node"]
+script = ExtResource("1_7chdp")

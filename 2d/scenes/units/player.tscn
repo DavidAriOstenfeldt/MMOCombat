@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://2d/scenes/units/player.gd" id="1_8yth2"]
+[ext_resource type="Script" path="res://resources/player_stats.gd" id="2_b6knh"]
+[ext_resource type="Texture2D" uid="uid://bkfvgl4wf2e85" path="res://icon.svg" id="3_mnurb"]
+[ext_resource type="PackedScene" path="res://scenes/abilities/fireball/fireball_ability_controller.tscn" id="3_whf5y"]
+[ext_resource type="PackedScene" path="res://scenes/abilities/fireblast/fireblast_ability_controller.tscn" id="4_yrlj7"]
+[ext_resource type="PackedScene" path="res://scenes/abilities/pyroblast/pyroblast_ability_controller.tscn" id="5_m1wsk"]
+[ext_resource type="PackedScene" path="res://scenes/abilities/phoenix_flames/phoenix_flames_ability_controller.tscn" id="6_30v0v"]
+[ext_resource type="PackedScene" uid="uid://cdejh7omjfcry" path="res://scenes/abilities/flamestrike/flamestrike_ability_controller.tscn" id="7_rh04c"]
+[ext_resource type="PackedScene" uid="uid://0vlflfc3u7p7" path="res://scenes/ui/talent_trees/talent_screen.tscn" id="10_643q4"]
+
+[sub_resource type="Resource" id="Resource_obkq4"]
+script = ExtResource("2_b6knh")
+crit_rating = 5.0
+haste_rating = 5.0
+versatility_rating = 5.0
+mastery_rating = 5.0
+current_level = 1.0
+global_cooldown = 1.5
+minimum_gcd = 0.75
+crit_multiplier = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fs165"]
+size = Vector2(122, 126)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_8yth2")
+stats = SubResource("Resource_obkq4")
+
+[node name="GlobalCooldownTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="CastTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="FireballAbilityController" parent="Abilities" instance=ExtResource("3_whf5y")]
+
+[node name="FireBlastAbilityController" parent="Abilities" instance=ExtResource("4_yrlj7")]
+
+[node name="PyroblastAbilityController" parent="Abilities" instance=ExtResource("5_m1wsk")]
+
+[node name="PhoenixFlamesAbilityController" parent="Abilities" instance=ExtResource("6_30v0v")]
+
+[node name="FlamestrikeAbilityController" parent="Abilities" instance=ExtResource("7_rh04c")]
+
+[node name="Buffs" type="Node" parent="."]
+
+[node name="Passives" type="Node" parent="."]
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("3_mnurb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_fs165")
+
+[node name="AbiltySpawnPosition" type="Marker2D" parent="."]
+position = Vector2(90, 0)
+
+[node name="TalentScreen" parent="." instance=ExtResource("10_643q4")]
+visible = false

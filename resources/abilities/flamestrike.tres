@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=6 format=3 uid="uid://hcwdguin27jb"]
+
+[ext_resource type="Script" path="res://resources/abilities/ability_resource.gd" id="1_6l6fr"]
+[ext_resource type="PackedScene" uid="uid://yf321ak55yiq" path="res://scenes/abilities/flamestrike/flamestrike.tscn" id="1_wbbv3"]
+[ext_resource type="Script" path="res://resources/types/element_type_resource.gd" id="2_22g41"]
+[ext_resource type="Texture2D" uid="uid://bbituc6bio4kh" path="res://assets/ui/icons/flamestrike.png" id="2_vkw0l"]
+
+[sub_resource type="Resource" id="Resource_32yl6"]
+script = ExtResource("2_22g41")
+type = {
+"Arcane": false,
+"Fire": true,
+"Frost": false
+}
+
+[resource]
+script = ExtResource("1_6l6fr")
+id = "flamestrike"
+ability_scene = ExtResource("1_wbbv3")
+icon = ExtResource("2_vkw0l")
+name = "Flamestrike"
+description = "Strike an area with a large burst of flame, dealing {dam} {type} damage to everyone in it."
+cast_type = "Cast"
+cast_time = 3.0
+elements = SubResource("Resource_32yl6")
+damage = 15.0
+splash = false
+splash_damage_multiplier = 1.0
+aoe = true
+additional_crit_chance = 0.0
+crit_damage_multiplier = 1.0
+cooldown = 0.0
+charges = 1
+castable_while_casting = false
+cast_on_mouse = true
+cast_while_moving = false

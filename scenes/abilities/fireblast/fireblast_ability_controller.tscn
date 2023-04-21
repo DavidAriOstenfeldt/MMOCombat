@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://yrlxhuucw47q"]
+
+[ext_resource type="Script" path="res://scenes/abilities/ability_controller.gd" id="1_khe0q"]
+[ext_resource type="Resource" uid="uid://cl25im8rsm8w6" path="res://resources/abilities/fireblast.tres" id="2_sklgt"]
+
+[node name="FireBlastAbilityController" type="Node"]
+script = ExtResource("1_khe0q")
+ability = ExtResource("2_sklgt")
+
+[node name="AbilityCooldownTimer" type="Timer" parent="."]
+one_shot = true

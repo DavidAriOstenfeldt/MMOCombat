@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://c6srf6wrrr5h1"]
+
+[ext_resource type="Script" path="res://scenes/units/player/player.gd" id="1_5dwbw"]
+[ext_resource type="PackedScene" uid="uid://c1nxh8mwq0w2r" path="res://scenes/abilities/fireball/fireball_ability_controller.tscn" id="1_xvoco"]
+[ext_resource type="Script" path="res://resources/player_stats.gd" id="2_1n6ax"]
+[ext_resource type="PackedScene" uid="uid://yrlxhuucw47q" path="res://scenes/abilities/fireblast/fireblast_ability_controller.tscn" id="2_aiapp"]
+[ext_resource type="PackedScene" uid="uid://b8vw7c6ks45ep" path="res://scenes/abilities/pyroblast/pyroblast_ability_controller.tscn" id="3_evj5h"]
+[ext_resource type="PackedScene" uid="uid://4srs2ho5sa8u" path="res://scenes/abilities/phoenix_flames/phoenix_flames_ability_controller.tscn" id="6_ui7of"]
+[ext_resource type="PackedScene" uid="uid://b5sprxpbb0hrv" path="res://scenes/ui/talent_trees/talent_screen.tscn" id="6_uwgo5"]
+[ext_resource type="PackedScene" uid="uid://mfvlqpfbqp0g" path="res://scenes/abilities/flamestrike/flamestrike_ability_controller.tscn" id="17_wgd3b"]
+
+[sub_resource type="Resource" id="Resource_j04e4"]
+script = ExtResource("2_1n6ax")
+crit_rating = 5.0
+haste_rating = 5.0
+versatility_rating = 5.0
+mastery_rating = 5.0
+current_level = 1
+talent_points_available = 5
+global_cooldown = 1.5
+minimum_gcd = 0.75
+crit_multiplier = 2.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wegnm"]
+radius = 0.4
+height = 1.75
+
+[sub_resource type="PrismMesh" id="PrismMesh_88le1"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qrqql"]
+radius = 0.4
+height = 1.75
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 16
+script = ExtResource("1_5dwbw")
+stats = SubResource("Resource_j04e4")
+
+[node name="GlobalCooldownTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="CastTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HoverTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="TargetTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="FireballAbilityController" parent="Abilities" instance=ExtResource("1_xvoco")]
+
+[node name="FireBlastAbilityController" parent="Abilities" instance=ExtResource("2_aiapp")]
+
+[node name="PyroblastAbilityController" parent="Abilities" instance=ExtResource("3_evj5h")]
+
+[node name="PhoenixFlamesAbilityController" parent="Abilities" instance=ExtResource("6_ui7of")]
+
+[node name="FlamestrikeAbilityController" parent="Abilities" instance=ExtResource("17_wgd3b")]
+
+[node name="Buffs" type="Node" parent="."]
+
+[node name="Passives" type="Node" parent="."]
+
+[node name="TalentScreen" parent="." instance=ExtResource("6_uwgo5")]
+visible = false
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_wegnm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.80313, 0)
+mesh = SubResource("PrismMesh_88le1")
+
+[node name="AbilitySpawnPosition" type="Node3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0102, -0.686733)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_qrqql")
+
+[node name="SpringArmPivot" type="Node3D" parent="."]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="SpringArmPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37622, 0)
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArmPivot/SpringArm3D"]

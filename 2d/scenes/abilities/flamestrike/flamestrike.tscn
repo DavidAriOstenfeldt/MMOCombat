@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://2d/scenes/abilities/flamestrike/flamestrike.gd" id="1_myh5c"]
+[ext_resource type="PackedScene" path="res://2d/scenes/floating_combat_text.tscn" id="2_npspj"]
+[ext_resource type="PackedScene" path="res://scenes/abilities/fire_hit_particles.tscn" id="3_5p6xr"]
+
+[sub_resource type="Gradient" id="Gradient_tjgnk"]
+offsets = PackedFloat32Array(0, 0.373874, 0.648649, 1)
+colors = PackedColorArray(1.33333, 0.894118, 0.305882, 1, 1, 0.313726, 0.0352941, 1, 0.619608, 0.141176, 0.117647, 1, 0.20871, 0.20871, 0.20871, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l72b4"]
+gradient = SubResource("Gradient_tjgnk")
+
+[sub_resource type="Curve" id="Curve_56wih"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.490909), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ssj4l"]
+curve = SubResource("Curve_56wih")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rbg2j"]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 75.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, -98, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+angular_velocity_min = 360.0
+angular_velocity_max = 720.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 10.0
+damping_max = 30.0
+angle_max = 360.0
+scale_min = 10.0
+scale_max = 15.0
+scale_curve = SubResource("CurveTexture_ssj4l")
+color_ramp = SubResource("GradientTexture1D_l72b4")
+turbulence_noise_speed = Vector3(1, 1, 1)
+turbulence_influence_max = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yo5g5"]
+radius = 75.0
+
+[node name="FlameStrike" type="Node2D"]
+script = ExtResource("1_myh5c")
+floating_combat_text = ExtResource("2_npspj")
+
+[node name="FlameStrike" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 256
+process_material = SubResource("ParticleProcessMaterial_rbg2j")
+lifetime = 1.5
+explosiveness = 0.9
+fixed_fps = 60
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_yo5g5")
+disabled = true
+
+[node name="FireHitParticles" parent="." instance=ExtResource("3_5p6xr")]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Visuals" type="Node2D" parent="."]
+visible = false
+
+[node name="TargetReticle" type="Polygon2D" parent="Visuals"]
+z_index = -1
+color = Color(1, 0.666667, 0, 0.72549)
+polygon = PackedVector2Array(-76, 0, -72, -20, -65, -38, -54, -53, -38, -66, -18, -73, 0, -75, 21, -73, 37, -65, 52, -53, 66, -37, 73, -18, 75, 1, 72, 21, 65, 37, 54, 51, 37, 64, 17, 72, -1, 75, -19, 72, -38, 65, -52, 54, -66, 38, -73, 20)

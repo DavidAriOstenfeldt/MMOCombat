@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TalentResource" load_steps=4 format=3 uid="uid://10puwp1qr6qo"]
+
+[ext_resource type="Texture2D" uid="uid://dblgrvvrattpf" path="res://assets/ui/icons/fireball_icon.png" id="1_40km6"]
+[ext_resource type="Script" path="res://resources/talents/talent_resource.gd" id="1_an23r"]
+[ext_resource type="Resource" uid="uid://x1yqm704bx4t" path="res://resources/passives/fiery_resolve.tres" id="2_i6cl7"]
+
+[resource]
+script = ExtResource("1_an23r")
+id = "fiery_resolve_talent"
+icon = ExtResource("1_40km6")
+name = "Fiery Resolve"
+description = "Grants the fiery resolve passive."
+max_rank = 3
+resource = ExtResource("2_i6cl7")
+passive = true
+ability = false
+use_resource_description = false
