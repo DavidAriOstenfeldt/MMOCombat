@@ -2,6 +2,9 @@
 A test implementation of combat systems commonly seen in famous mmorpg games.
 
 
+https://user-images.githubusercontent.com/57765588/233586006-dcc76933-a109-4801-ad14-74fe7d65e1c7.mp4
+
+
 Currently has:
 - Tab targeting combat (only mouse clicks)
 - Stat system
