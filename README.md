@@ -20,3 +20,23 @@ Currently has:
 - Passives
   - Conditional passives, e.g. "critical strikes with fire spells grant a buff" or "non-critical strikes with fireball grant your next fireball 5% crit, stacking"
  
+WIP:
+- VFX
+- Actual tab-targeting (with tab key)
+- Adjust ability placements with drag and drop
+- Spell book
+- Hit animations
+- Change projectiles to have a duration instead of speed (?)
+- Enemy stats
+- Player health bar
+- Target health bar
+- Ground AoE placement cursor
+- More talents
+- More abilities
+- More buffs
+- More passives
+- 3D level
+- Lore to define fantasy
+- More classes
+- ...
+
